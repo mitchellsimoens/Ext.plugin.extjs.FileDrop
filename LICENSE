@@ -1,0 +1,12 @@
+/*
+    Author       : Mitchell Simoens
+    Site         : http://simoens.org/
+    Contact Info : mitchellsimoens@gmail.com
+    Purpose      : Creation of a plugin to turn any ExtJS 4 element into a file droppable element
+
+	License      : MIT (http://www.opensource.org/licenses/mit-license.php)
+    Warranty     : none
+    Price        : free
+    Version      : 1.0
+    Date         : 3/15/2011
+*/
