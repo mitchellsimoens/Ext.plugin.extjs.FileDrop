@@ -3,7 +3,6 @@ Ext.onReady(function() {
 		renderTo  : Ext.getBody(),
 		width     : 400,
 		height    : 400,
-		html      : "Test",
 		title     : "File Droppable",
 		plugins   : [
 			{ ptype : "filedrop" }
@@ -15,8 +14,24 @@ Ext.onReady(function() {
 			drop     : function(cmp, e) {
 				console.log("Drop");
 			},
-			read     : function(cmp, e) {
-				console.log("File Read");
+			beforeread: function(cmp, file) {
+				var imageType = /image.*/;
+				return Ext.isArray(file.type.match(imageType)); //true if an image
+			},
+			readstart : function(cmp, e, file) {
+				console.log("Starting to rRad");
+			},
+			read     : function(cmp, e, file) {
+				console.log("Read File");
+			},
+			readend   : function(cmp, e, file) {
+				console.log("End of Reading");
+			},
+			readabort : function(cmp, e, file) {
+				console.log("Aborted Reading");
+			},
+			readerror : function(cmp, e, file) {
+				console.log("Error Reading");
 			}
 		}
 	});
