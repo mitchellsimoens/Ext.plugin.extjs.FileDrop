@@ -7,7 +7,8 @@ Ext.define("Ext.plugin.extjs.FileDrop", {
 
 		cmp.addEvents({
 			dragover : true,
-			drop     : true
+			drop     : true,
+			read     : true
 		});
 
 		cmp.on("afterrender", me.initFileDrop, me);
@@ -31,7 +32,31 @@ Ext.define("Ext.plugin.extjs.FileDrop", {
 	onDrop: function(e) {
 		e.stopEvent();
 
-		var cmp = this.cmp;
+		var cmp          = this.cmp,
+			browserEvent = e.browserEvent,
+			dataTransfer = browserEvent.dataTransfer,
+			files        = dataTransfer.files,
+			numFiles     = files.length,
+			i            = 0,
+			file;
+
 		cmp.fireEvent("drop", cmp, e);
+
+		for (; i < numFiles; i++) {
+			file = files[i];
+			this.readFile(file);
+		}
+	},
+
+	readFile: function(file) {
+		var reader    = new FileReader();
+		reader.onload = Ext.bind(this.onFileRead, this);
+		reader.readAsDataURL(file);
+	},
+
+	onFileRead: function(e) {
+		var cmp = this.cmp;
+
+		cmp.fireEvent("read", cmp, e);
 	}
 });

@@ -14,6 +14,9 @@ Ext.onReady(function() {
 			},
 			drop     : function(cmp, e) {
 				console.log("Drop");
+			},
+			read     : function(cmp, e) {
+				console.log("File Read");
 			}
 		}
 	});
