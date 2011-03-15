@@ -5,7 +5,14 @@ Ext.onReady(function() {
 		height    : 400,
 		title     : "File Droppable",
 		plugins   : [
-			{ ptype : "filedrop" }
+			{
+				ptype    : "filedrop",
+				readType : "DataURL"
+				//default - DataURL
+				//BinaryString
+				//Text
+				//ArrayBuffer
+			}
 		],
 		listeners : {
 			dragover : function(cmp, e) {
@@ -14,23 +21,23 @@ Ext.onReady(function() {
 			drop     : function(cmp, e) {
 				console.log("Drop");
 			},
-			beforeread: function(cmp, file) {
+			beforeload: function(cmp, file) {
 				var imageType = /image.*/;
-				return Ext.isArray(file.type.match(imageType)); //true if an image
+//				return Ext.isArray(file.type.match(imageType)); //true if an image
 			},
-			readstart : function(cmp, e, file) {
-				console.log("Starting to rRad");
+			loadstart : function(cmp, e, file) {
+				console.log("Starting to Read");
 			},
-			read     : function(cmp, e, file) {
-				console.log("Read File");
+			load     : function(cmp, e, file) {
+				console.log("Done Reading");
 			},
-			readend   : function(cmp, e, file) {
+			loadend   : function(cmp, e, file) {
 				console.log("End of Reading");
 			},
-			readabort : function(cmp, e, file) {
+			loadabort : function(cmp, e, file) {
 				console.log("Aborted Reading");
 			},
-			readerror : function(cmp, e, file) {
+			loaderror : function(cmp, e, file) {
 				console.log("Error Reading");
 			}
 		}
